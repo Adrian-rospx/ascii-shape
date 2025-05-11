@@ -1,7 +1,7 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Steaua forever\n";
+    std::cout << "The cake is a lie!\n";
 
     return 0;
 }
