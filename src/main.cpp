@@ -13,9 +13,10 @@ std::vector<std::string> screen(
     std::string(WIDTH, ' ')
 );
 
+// rendering function (flips screen for convenience)
 void render() {
-    for(const std::string& row : screen) {
-        std::cout << row << '\n';
+    for(auto it = screen.rbegin(); it != screen.rend(); ++it) {
+        std::cout << *it << '\n';
     }
 }
 
