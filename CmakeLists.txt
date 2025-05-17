@@ -1,8 +1,15 @@
 cmake_minimum_required(VERSION 4.0.0)
 
-project(main)
+project(ascii_square LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_executable(main src/main.cpp)
+add_executable(ascii_square 
+    "src/main.cpp"
+    "src/line_drawing.cpp"
+)
+
+target_include_directories(ascii_square PUBLIC 
+    include
+)
