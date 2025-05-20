@@ -14,14 +14,17 @@ Screen scr(HEIGHT, WIDTH);
 // rendering function (flips screen for convenience)
 void render(const Screen& scr) {
     for(auto row_iter = scr.buffer.rbegin(); row_iter != scr.buffer.rend(); ++row_iter) {
-        for(auto col_iter = row_iter->begin(); col_iter != row_iter->end(); ++col_iter) {
+        // create a string, add to it and flush it all at once
+        std::string line(scr.WIDTH, char());
+
+        for(auto col_item : *row_iter) {
             // draws x for colored red pixels
-            if(col_iter->r != 0)
-                std::cout << 'x';
+            if(col_item.r != 0)
+                line += 'x';
             else
-                std::cout << ' ';
+                line += ' ';
         }
-        std::cout << '\n';
+        std::cout << line << '\n';
     }
 }
 
