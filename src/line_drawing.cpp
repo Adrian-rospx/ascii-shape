@@ -3,7 +3,7 @@
 #include "screen.h"
 #include "line_drawing.h"
 
-void draw_line_alg_low(const int x1, const int y1, const int x2, const int y2, Screen& scr) {
+void draw_line_alg_low(Screen& scr, const int x1, const int y1, const int x2, const int y2) {
     const int dx = x2 - x1;
     const int dy = y2 - y1;
     const float m = static_cast<float>(dy) / dx;    // m = slope
@@ -14,7 +14,7 @@ void draw_line_alg_low(const int x1, const int y1, const int x2, const int y2, S
         scr.buffer.at(y).at(x).r = 255;
     }
 }
-void draw_line_alg_steep(const int x1, const int y1, const int x2, const int y2, Screen& scr) {
+void draw_line_alg_steep(Screen& scr, const int x1, const int y1, const int x2, const int y2) {
     const int dx = x2 - x1;
     const int dy = y2 - y1;
     const float m = static_cast<float>(dy) / dx;
@@ -25,7 +25,7 @@ void draw_line_alg_steep(const int x1, const int y1, const int x2, const int y2,
     }
 }
 
-void draw_line(const float x1_f, const float y1_f, const float x2_f, const float y2_f, Screen& scr) {
+void draw_line(Screen& scr, const float x1_f, const float y1_f, const float x2_f, const float y2_f) {
     // cast parameters to intagers
     int x1 = std::round(x1_f);
     int y1 = std::round(y1_f);
@@ -43,7 +43,7 @@ void draw_line(const float x1_f, const float y1_f, const float x2_f, const float
             y1 = y2;
             y2 = temp;
         }
-        draw_line_alg_low(x1, y1, x2, y2, scr);
+        draw_line_alg_low(scr, x1, y1, x2, y2);
     } else {
         if(y1 > y2) {
             int temp = x1;
@@ -54,6 +54,6 @@ void draw_line(const float x1_f, const float y1_f, const float x2_f, const float
             y1 = y2;
             y2 = temp;
         }
-        draw_line_alg_steep(x1, y1, x2, y2, scr);
+        draw_line_alg_steep(scr, x1, y1, x2, y2);
     }
 }

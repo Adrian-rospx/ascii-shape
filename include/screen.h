@@ -1,4 +1,4 @@
-// screen buffer made from a vector of strings
+// screen buffer made from a matrix of pixels
 #pragma once
 
 #include <cstdint>
