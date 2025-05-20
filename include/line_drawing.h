@@ -1,5 +1,6 @@
 // line drawing module
 #pragma once
+#include "screen.h"
 
 // line drawing utility
-void draw_line(float x1, float y1, float x2, float y2);
+void draw_line(const float x1_f, const float y1_f, const float x2_f, const float y2_f, Screen& scr);
