@@ -25,12 +25,7 @@ void draw_line_alg_steep(Screen& scr, const int x1, const int y1, const int x2, 
     }
 }
 
-void draw_line(Screen& scr, const float x1_f, const float y1_f, const float x2_f, const float y2_f) {
-    // cast parameters to intagers
-    int x1 = std::round(x1_f);
-    int y1 = std::round(y1_f);
-    int x2 = std::round(x2_f);
-    int y2 = std::round(y2_f);
+void draw_line(Screen& scr, int x1, int y1, int x2, int y2) {
 
     if(std::abs(x2-x1) > std::abs(y2-y1)) {
         // switch points if the x values aren't in order

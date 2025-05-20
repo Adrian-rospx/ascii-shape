@@ -8,7 +8,7 @@
 const int HEIGHT = 20;
 const int WIDTH = 20;
 
-// initial screen, defined in screen.h
+// initial screen, defined in "screen.h"
 Screen scr(HEIGHT, WIDTH);
 
 // rendering function (flips screen for convenience)
