@@ -6,7 +6,7 @@
 void draw_line_alg_low(const int x1, const int y1, const int x2, const int y2) {
     const int dx = x2 - x1;
     const int dy = y2 - y1;
-    const float m = static_cast<float>(dy) / dx;  // m = slope
+    const float m = static_cast<float>(dy) / dx;    // m = slope
 
     // drawing:
     for(int x = x1; x <= x2; x++) {
@@ -17,8 +17,8 @@ void draw_line_alg_low(const int x1, const int y1, const int x2, const int y2) {
 void draw_line_alg_steep(const int x1, const int y1, const int x2, const int y2) {
     const int dx = x2 - x1;
     const int dy = y2 - y1;
-    const float m = static_cast<float>(dy) / dx;  // m = slope
-    // drawing:
+    const float m = static_cast<float>(dy) / dx;
+
     for(int y = y1; y <= y2; y++) {
         const int x = static_cast<int>(static_cast<float>(y-y1) / m + x1);
         screen.at(y).at(x) = 'x';
