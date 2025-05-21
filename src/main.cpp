@@ -17,21 +17,18 @@ void render(const Screen& scr) {
         // create a string, add to it and flush it all at once
         std::string line(scr.WIDTH, char());
 
-        for(auto col_item : *row_iter) {
-            // draws x for colored red pixels
-            if(col_item.r != 0)
-                line += 'x';
-            else
-                line += ' ';
+        for(auto pixel : *row_iter) {
+            // draws uncolored character
+            line += pixel.character;
         }
         std::cout << line << '\n';
     }
 }
 
 int main() {
-    // draw screen red
-    scr.buffer.at(0).at(0).r = 255;
-    scr.buffer.at(HEIGHT - 1).at(WIDTH - 1).r = 255;
+    // draw two 
+    scr.buffer.at(0).at(0) = Pixel('@', 'w');
+    scr.buffer.at(scr.HEIGHT - 1).at(scr.WIDTH - 1) = Pixel('@', 'w');
 
     draw_line(scr, 5, 16, 16, 2);
 

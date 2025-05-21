@@ -5,6 +5,10 @@
 
 #include "screen.h"
 
+void draw(Screen& scr, const int x, const int y, const char character, const char color) {
+    scr.buffer.at(y).at(x) = Pixel(character, color);
+}
+
 void draw_line_alg_low(Screen& scr, const int x1, const int y1, const int x2, const int y2) {
     const int dx = x2 - x1;
     const int dy = y2 - y1;
@@ -13,7 +17,7 @@ void draw_line_alg_low(Screen& scr, const int x1, const int y1, const int x2, co
     // drawing:
     for(int x = x1; x <= x2; x++) {
         const int y = static_cast<int>(static_cast<float>(x-x1) * m + y1);
-        scr.buffer.at(y).at(x).r = 255;
+        draw(scr, x, y, '#', 'w');
     }
 }
 void draw_line_alg_steep(Screen& scr, const int x1, const int y1, const int x2, const int y2) {
@@ -23,7 +27,7 @@ void draw_line_alg_steep(Screen& scr, const int x1, const int y1, const int x2, 
 
     for(int y = y1; y <= y2; y++) {
         const int x = static_cast<int>(static_cast<float>(y-y1) / m + x1);
-        scr.buffer.at(y).at(x).r = 255;
+        draw(scr, x, y, '#', 'w');
     }
 }
 
