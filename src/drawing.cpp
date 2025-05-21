@@ -16,17 +16,17 @@ void draw_line_alg_low(Screen& scr, const int x1, const int y1, const int x2, co
 
     // drawing:
     for(int x = x1; x <= x2; x++) {
-        const int y = static_cast<int>(static_cast<float>(x-x1) * m + y1);
+        const int y = static_cast<int>(std::lround(static_cast<float>(x-x1) * m + y1));
         draw(scr, x, y, '#', 'w');
     }
 }
 void draw_line_alg_steep(Screen& scr, const int x1, const int y1, const int x2, const int y2) {
     const int dx = x2 - x1;
     const int dy = y2 - y1;
-    const float m = static_cast<float>(dy) / dx;
+    const float inv_m = static_cast<float>(dx) / dy;// inverse slope to avoid zero division
 
     for(int y = y1; y <= y2; y++) {
-        const int x = static_cast<int>(static_cast<float>(y-y1) / m + x1);
+        const int x = static_cast<int>(std::lround(static_cast<float>(y-y1) * inv_m + x1));
         draw(scr, x, y, '#', 'w');
     }
 }
