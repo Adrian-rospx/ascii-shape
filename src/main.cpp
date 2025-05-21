@@ -1,8 +1,11 @@
 #include <iostream>
 #include <conio.h>
+#include <vector>
 
+#include "geometry.h"
 #include "screen.h"
-#include "line_drawing.h"
+#include "drawing.h"
+
 
 // constants:
 const int HEIGHT = 20;
@@ -26,12 +29,20 @@ void render(const Screen& scr) {
 }
 
 int main() {
-    // draw two 
+    // draw two points in corners
     scr.buffer.at(0).at(0) = Pixel('@', 'w');
     scr.buffer.at(scr.HEIGHT - 1).at(scr.WIDTH - 1) = Pixel('@', 'w');
 
-    draw_line(scr, 5, 16, 16, 2);
+    // create a square shape
+    Shape quad({
+        {5, 15},
+        {15, 15},
+        {18, 5},
+        {2, 5}
+    });
+    quad.draw_outline(scr);
 
+    // render the shape
     render(scr);
 
     return 0;

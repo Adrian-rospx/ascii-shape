@@ -7,7 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(ascii_square 
     "src/main.cpp"
-    "src/line_drawing.cpp"
+    "src/drawing.cpp"
+    "src/geometry.cpp"
 )
 
 target_include_directories(ascii_square PUBLIC 

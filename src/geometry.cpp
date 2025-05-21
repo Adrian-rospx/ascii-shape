@@ -2,19 +2,23 @@
 #include "geometry.h"
 
 #include <cmath>
+#include <cstddef>
 
-#include "line_drawing.h"
+#include "drawing.h"
 
 void Shape::draw_outline(Screen& scr) {
-    for(int i=0; i<Vertices.size(); i++) {
-        const Point v1 = Vertices.at(i);
-        const Point v2 = Vertices.at((i+1) % Vertices.size());
+    size_t size = Vertices.size();
+    for(size_t i = 0; i < size; i++) {
+        // use each vertex and the next one to create an edge
+        const Point v1 = Vertices[i];
+        const Point v2 = Vertices[(i+1 != size) ? i+1 : 0];
 
+        using std::lround;
         draw_line(scr, 
-            static_cast<int>(std::round(v1.x)), 
-            static_cast<int>(std::round(v1.y)), 
-            static_cast<int>(std::round(v2.x)), 
-            static_cast<int>(std::round(v2.y))
+            static_cast<int>(lround(v1.x)), 
+            static_cast<int>(lround(v1.y)), 
+            static_cast<int>(lround(v2.x)), 
+            static_cast<int>(lround(v2.y))
         );
     }
 }
