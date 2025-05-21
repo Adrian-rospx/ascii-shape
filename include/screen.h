@@ -1,4 +1,4 @@
-// screen buffer made from a matrix of pixels
+// screen pixels container for drawing with rendering methods
 #pragma once
 
 #include <cstdint>
@@ -27,4 +27,7 @@ struct Screen {
             height, 
             std::vector<Pixel>(width, Pixel())
         ) {}
+
+    // rendering function (flips screen for convenience)
+    void render();
 };

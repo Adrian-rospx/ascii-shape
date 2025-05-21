@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(ascii_square 
     "src/main.cpp"
+    "src/screen.cpp"
     "src/drawing.cpp"
     "src/geometry.cpp"
 )
