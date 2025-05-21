@@ -1,7 +1,9 @@
+// line drawing algorithm implementation
+#include "line_drawing.h"
+
 #include <cmath>
 
 #include "screen.h"
-#include "line_drawing.h"
 
 void draw_line_alg_low(Screen& scr, const int x1, const int y1, const int x2, const int y2) {
     const int dx = x2 - x1;
