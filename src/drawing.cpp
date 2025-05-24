@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstddef>
 #include <vector>
 
 #include "screen.h"
@@ -68,18 +69,19 @@ void draw_line(Screen& scr, int x1, int y1, int x2, int y2, const char character
 Edge vertices_to_edge(const Vertex& v_y_min, const Vertex& v_y_max) {
     const int y_min = std::lround(v_y_min.y);
     const int y_max = std::lround(v_y_max.y);
-    const int x_at_y_min = std::lround(v_y_min.x);
+    const float x_at_y_min = std::lround(v_y_min.x);
 
-    const float dx = std::abs(v_y_min.x - v_y_max.x);
+    const float dx = std::abs(std::round(v_y_min.x) - std::round(v_y_max.x));
     const int dy = y_max - y_min;
 
     return Edge{y_min, y_max, x_at_y_min, dx/dy};
 }
+// turns vertices into a vector of edges
 std::vector<Edge> EdgeTable::make_edge_vector(const std::vector<Vertex>& Vertices) {
     // create an array with all edges
     std::vector<Edge> Edges;
 
-    for(int i=0; i < Vertices.size(); i++) {
+    for(size_t i=0; i < Vertices.size(); i++) {
         // select neighboring vertices to create edges
         const Vertex v1 = Vertices[i];
         const Vertex v2 = Vertices[(i+1 != Vertices.size()) ? i+1 : 0];
@@ -91,7 +93,6 @@ std::vector<Edge> EdgeTable::make_edge_vector(const std::vector<Vertex>& Vertice
             Edges.push_back(vertices_to_edge(v2, v1));
         }
     }
-    
     return Edges;
 }
 

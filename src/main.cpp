@@ -39,5 +39,7 @@ int main() {
         }
     }
 
+    std::cout << edgeTable.y_min << ' ' << edgeTable.y_max;
+
     return 0;
 }

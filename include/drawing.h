@@ -1,7 +1,7 @@
 // line drawing module
 #pragma once
 
-#include <iostream>
+#include <algorithm>
 #include <vector>
 
 #include "geometry.h"
@@ -15,9 +15,8 @@ void draw_line(Screen& scr,
 
 // edge structure for polygon drawing
 struct Edge {
-    int y_min;
-    int y_max;
-    int x_at_y_min;
+    int y_min, y_max;
+    float x;        // float for accuracy when drawing
     float dx_dy;    // inverse slope
 };
 
@@ -25,7 +24,9 @@ struct Edge {
 class EdgeTable {
     std::vector<Edge> make_edge_vector(const std::vector<Vertex>& Vertices);
 public:
+    int y_min, y_max;
     std::vector<std::vector<Edge>> edge_buckets;
+    std::vector<Edge> AET;  // active edge table
 
     EdgeTable(const Screen& scr,
         const std::vector<Vertex>& Vertices
@@ -34,11 +35,28 @@ public:
 
         // array of all edges:
         const std::vector<Edge> edges = make_edge_vector(Vertices);
-        
-        // add to egde buckets by y_min value
+
+        // min and max elements
+        y_min = std::min_element(edges.begin(), edges.end(), 
+            [](const Edge& a, const Edge& b) { 
+                return a.y_min < b.y_min;
+            }
+        )->y_min;
+        y_max = std::max_element(edges.begin(), edges.end(), 
+            [](const Edge& a, const Edge& b) { 
+                return a.y_max < b.y_max;
+            }
+        )->y_max;
+
+        // add to edge buckets by y_min value
         for(const Edge& e : edges) {
             edge_buckets[e.y_min].push_back(e);
         }
+    }
 
+    void draw(Screen& scr) {
+        for(int y = y_min; y < y_max; y++) {
+
+        }
     }
 };
