@@ -5,15 +5,15 @@
 
 #include "screen.h"
 
-struct Point {
+struct Vertex {
     float x;
     float y;
 };
 
 class Shape {
-    std::vector<Point> Vertices;
+    std::vector<Vertex> Vertices;
 public:
-    Shape(const std::vector<Point>& Vertices) : Vertices(Vertices) {}
+    Shape(const std::vector<Vertex>& Vertices) : Vertices(Vertices) {}
 
     void draw_outline(Screen& scr, const char character = '#');
 };

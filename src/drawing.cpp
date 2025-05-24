@@ -2,13 +2,17 @@
 #include "drawing.h"
 
 #include <cmath>
+#include <vector>
 
 #include "screen.h"
+#include "geometry.h"
 
-void draw(Screen& scr, const int x, const int y, const char character, const char color) {
+// general drawing function
+void draw(Screen& scr, const int x, const int y, const char character, const char color = 'w') {
     scr.buffer.at(y).at(x) = Pixel(character, color);
 }
 
+// line algorithm functions
 void draw_line_alg_low(Screen& scr, 
     const int x1, const int y1, const int x2, const int y2, 
     const char character
@@ -20,7 +24,7 @@ void draw_line_alg_low(Screen& scr,
     // drawing:
     for(int x = x1; x <= x2; x++) {
         const int y = static_cast<int>(std::lround(static_cast<float>(x-x1) * m + y1));
-        draw(scr, x, y, character, 'w');
+        draw(scr, x, y, character);
     }
 }
 void draw_line_alg_steep(Screen& scr, 
@@ -33,7 +37,7 @@ void draw_line_alg_steep(Screen& scr,
 
     for(int y = y1; y <= y2; y++) {
         const int x = static_cast<int>(std::lround(static_cast<float>(y-y1) * inv_m + x1));
-        draw(scr, x, y, character, 'w');
+        draw(scr, x, y, character);
     }
 }
 
@@ -53,4 +57,17 @@ void draw_line(Screen& scr, int x1, int y1, int x2, int y2, const char character
         }
         draw_line_alg_steep(scr, x1, y1, x2, y2, character);
     }
+}
+
+struct Edge {
+    int y_min;
+    int y_max;
+    int x_at_y_min;
+    float dx_dy;    // inverse slope
+};
+
+void scanline_fill(Screen& scr,
+    std::vector<Vertex> Vertices
+) {
+
 }

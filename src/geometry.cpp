@@ -10,15 +10,15 @@ void Shape::draw_outline(Screen& scr, const char character) {
     size_t size = Vertices.size();
     for(size_t i = 0; i < size; i++) {
         // use each vertex and the next one to create an edge
-        const Point v1 = Vertices[i];
-        const Point v2 = Vertices[(i+1 != size) ? i+1 : 0];
+        const Vertex v1 = Vertices[i];
+        const Vertex v2 = Vertices[(i+1 != size) ? i+1 : 0];
 
         using std::lround;
         draw_line(scr, 
-            static_cast<int>(lround(v1.x)), 
-            static_cast<int>(lround(v1.y)), 
-            static_cast<int>(lround(v2.x)), 
-            static_cast<int>(lround(v2.y)), 
+            lround(v1.x), 
+            lround(v1.y), 
+            lround(v2.x), 
+            lround(v2.y), 
             character
         );
     }
