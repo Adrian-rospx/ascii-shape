@@ -1,6 +1,7 @@
 // line drawing module
 #pragma once
 
+#include <algorithm>
 #include <vector>
 
 #include "geometry.h"
@@ -17,12 +18,14 @@ struct Edge {
     float dx_dy;    // inverse slope
 };
 
+// edge table (polygon drawing)
 class EdgeTable {
     Edge vertices_to_edge(const Vertex& v1_y_min, const Vertex& v2);
 public:
     std::vector<Edge> Edges;
 
     EdgeTable(const std::vector<Vertex>& Vertices) {
+
         for(int i=0; i < Vertices.size(); i++) {
             // select neighboring vertices to create edges
             const Vertex v1 = Vertices[i];
@@ -35,5 +38,11 @@ public:
                 Edges.push_back(vertices_to_edge(v2, v1));
             }
         }
+        // sort edges by y_min
+        std::sort(Edges.begin(), Edges.end(), 
+            [](const Edge& A, const Edge& B) {
+                return A.y_min < B.y_min;
+        });
+
     }
 };

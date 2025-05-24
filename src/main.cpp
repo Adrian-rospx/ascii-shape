@@ -29,7 +29,7 @@ int main() {
     // render the shape
     scr.render();
 
-    // check edge table creation
+    // edge table creation
     EdgeTable edgt(quad.Vertices);
     // print to check
     for(const Edge& edge : edgt.Edges) {
