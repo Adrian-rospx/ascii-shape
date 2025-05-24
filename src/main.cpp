@@ -32,7 +32,7 @@ int main() {
     // edge table creation
     EdgeTable edgeTable(scr, quad.Vertices);
 
-    edgeTable.draw(scr);
+    edgeTable.draw_shape(scr);
 
     return 0;
 }

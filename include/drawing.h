@@ -54,26 +54,5 @@ public:
         }
     }
 
-    void draw(Screen& scr) {
-        for(int y = y_min; y < y_max; y++) {
-            // add edges from current edge bucket
-            if(!edge_buckets[y].empty()) {
-                for(const Edge& edge : edge_buckets[y])
-                    AET.push_back(edge);
-            }
-            // remove y = y_max
-            AET.erase(std::remove_if(AET.begin(), AET.end(),
-                [y](const Edge& A) {
-                    return y == A.y_max;
-                }
-                ), AET.end()
-            );
-            // sort by current x value
-            std::sort(AET.begin(), AET.end(), 
-                [](const Edge& A, const Edge& B) {
-                    return A.x < B.x;
-                }
-            );
-        }
-    }
+    void draw_shape(Screen& scr, const char character='@', const char color = 'w');
 };

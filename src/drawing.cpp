@@ -11,7 +11,13 @@
 
 // general drawing function
 void draw(Screen& scr, const int x, const int y, const char character, const char color = 'w') {
-    scr.buffer.at(y).at(x) = Pixel(character, color);
+    scr.buffer[y][x] = Pixel(character, color);
+}
+// draw horizontal line
+void draw_h(Screen& scr, const int y, const int x1, const int x2, const char character, const char color = 'w') {
+    for(size_t x = x1; x < x2; x++) {
+        scr.buffer[y][x] = Pixel(character, color);
+    }
 }
 
 /*
@@ -96,9 +102,39 @@ std::vector<Edge> EdgeTable::make_edge_vector(const std::vector<Vertex>& Vertice
     return Edges;
 }
 
+// main drawing function
+void EdgeTable::draw_shape(Screen& scr, const char character, const char color) {
 
-void scanline_fill(Screen& scr,
-    std::vector<Vertex> Vertices
-) {
+    for(int y = y_min; y < y_max; y++) {
+        // add edges from current edge bucket
+        if(!edge_buckets[y].empty()) {
+            for(const Edge& edge : edge_buckets[y])
+                AET.push_back(edge);
+        }
+        // remove y = y_max
+        AET.erase(std::remove_if(AET.begin(), AET.end(),
+            [y](const Edge& A) {
+                return y == A.y_max;
+            }
+            ), AET.end()
+        );
+        // sort by current x value
+        std::sort(AET.begin(), AET.end(), 
+            [](const Edge& A, const Edge& B) {
+                return A.x < B.x;
+            }
+        );
 
+        // pair edges two and two for drawing
+        for(size_t i = 0; i+1 < AET.size(); i+=2) {
+            const int x_start = std::ceil(AET[i].x);
+            const int x_end   = std::floor(AET[i+1].x);
+
+            draw_h(scr, y, x_start, x_end, character, color);
+        }
+        // increase x accordingly
+        for(auto& edge : AET) {
+            edge.x += edge.dx_dy; 
+        }
+    }
 }
