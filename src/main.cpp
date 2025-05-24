@@ -16,7 +16,7 @@ int main() {
     scr.buffer.at(scr.HEIGHT - 1).at(scr.WIDTH - 1) = Pixel('@', 'w');
 
     // create a Shape, defined in "geometry.h"
-    Shape quad({
+    Shape quad(scr, {
         {0,   12},
         {7,   12},
         {11,  19},
@@ -29,8 +29,9 @@ int main() {
         {7,   9},
     });
 
-    quad.draw_shape(scr, '.');
-    quad.draw_outline(scr, '#');
+    // rasterize
+    quad.draw_fill('.');
+    quad.draw_outline('#');
 
     // render the shape
     scr.render();

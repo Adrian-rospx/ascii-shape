@@ -11,11 +11,12 @@ struct Vertex {
 };
 
 class Shape {
+    Screen scr;
 public:
     std::vector<Vertex> Vertices;
     
-    Shape(const std::vector<Vertex>& Vertices) : Vertices(Vertices) {}
+    Shape(const Screen& scr, const std::vector<Vertex>& Vertices) : scr(scr), Vertices(Vertices) {}
 
-    void draw_shape(Screen& scr, const char character = '#');
-    void draw_outline(Screen& scr, const char character = '#');
+    void draw_fill(const char character = '#');
+    void draw_outline(const char character = '#');
 };
