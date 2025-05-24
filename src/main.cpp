@@ -1,6 +1,5 @@
 #include <vector>
 
-#include "drawing.h"
 #include "geometry.h"
 #include "screen.h"
 
@@ -24,11 +23,7 @@ int main() {
         {2,   5}
     });
 
-
-    // edge table creation
-    EdgeTable edgeTable(scr, quad.Vertices);
-
-    edgeTable.draw_shape(scr, '.');
+    quad.draw_shape(scr, '.');
     quad.draw_outline(scr, '#');
 
     // render the shape

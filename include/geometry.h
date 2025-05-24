@@ -16,5 +16,6 @@ public:
     
     Shape(const std::vector<Vertex>& Vertices) : Vertices(Vertices) {}
 
+    void draw_shape(Screen& scr, const char character = '#');
     void draw_outline(Screen& scr, const char character = '#');
 };

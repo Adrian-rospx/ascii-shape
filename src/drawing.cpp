@@ -103,7 +103,7 @@ std::vector<Edge> EdgeTable::make_edge_vector(const std::vector<Vertex>& Vertice
 }
 
 // main drawing function
-void EdgeTable::draw_shape(Screen& scr, const char character, const char color) {
+void EdgeTable::fill_shape(Screen& scr, const char character, const char color) {
 
     for(int y = y_min; y < y_max; y++) {
         // add edges from current edge bucket

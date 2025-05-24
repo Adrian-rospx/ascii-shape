@@ -54,5 +54,5 @@ public:
         }
     }
 
-    void draw_shape(Screen& scr, const char character='@', const char color = 'w');
+    void fill_shape(Screen& scr, const char character='@', const char color = 'w');
 };

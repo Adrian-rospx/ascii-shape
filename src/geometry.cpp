@@ -23,3 +23,8 @@ void Shape::draw_outline(Screen& scr, const char character) {
         );
     }
 }
+
+void Shape::draw_shape(Screen& scr, const char character) {
+    EdgeTable edge_table(scr, Vertices);
+    edge_table.fill_shape(scr, character);
+}
