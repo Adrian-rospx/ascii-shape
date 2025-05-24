@@ -15,7 +15,7 @@ void draw(Screen& scr, const int x, const int y, const char character, const cha
 }
 // draw horizontal line
 void draw_h(Screen& scr, const int y, const int x1, const int x2, const char character, const char color = 'w') {
-    for(int x = x1; x < x2; x++) {
+    for(int x = x1; x <= x2; x++) {
         scr.buffer[y][x] = Pixel(character, color);
     }
 }
@@ -73,12 +73,12 @@ void draw_line(Screen& scr, int x1, int y1, int x2, int y2, const char character
     Edge table functions
 */
 Edge vertices_to_edge(const Vertex& v_y_min, const Vertex& v_y_max) {
-    const int y_min = std::lround(v_y_min.y);
-    const int y_max = std::lround(v_y_max.y);
+    const int y_min = std::round(v_y_min.y);
+    const int y_max = std::round(v_y_max.y);
     const float x_at_y_min = std::lround(v_y_min.x);
 
-    const float dx = std::round(v_y_max.x) - std::round(v_y_min.x);
-    const int dy = y_max - y_min;
+    const float dx = v_y_max.x - v_y_min.x;
+    const float dy = v_y_max.y - v_y_min.y;
 
     return Edge{y_min, y_max, x_at_y_min, dx/dy};
 }

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 
 #include "drawing.h"
@@ -19,18 +18,18 @@ int main() {
 
     // create a Shape, defined in "geometry.h"
     Shape quad({
-        {5,    12},
-        {14,   16},
-        {18,   3},
-        {2,    5}
+        {5,   13},
+        {14,  18},
+        {18,  2},
+        {2,   5}
     });
-    quad.draw_outline(scr, '-');
 
 
     // edge table creation
     EdgeTable edgeTable(scr, quad.Vertices);
 
-    edgeTable.draw_shape(scr, '$');
+    edgeTable.draw_shape(scr, '.');
+    quad.draw_outline(scr, '#');
 
     // render the shape
     scr.render();
