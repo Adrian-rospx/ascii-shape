@@ -4,7 +4,7 @@
 #include <cmath>
 #include <cstddef>
 
-#include "drawing.h"
+#include "rasterize.h"
 
 void Shape::draw_outline(Screen& scr, const char character) {
     size_t size = Vertices.size();

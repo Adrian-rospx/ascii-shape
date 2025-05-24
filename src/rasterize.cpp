@@ -1,5 +1,5 @@
 // line drawing algorithm implementation
-#include "drawing.h"
+#include "rasterize.h"
 
 #include <algorithm>
 #include <cmath>
