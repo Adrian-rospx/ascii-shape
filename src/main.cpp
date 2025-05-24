@@ -5,7 +5,7 @@
 
 // constants:
 const int HEIGHT = 20;
-const int WIDTH = 20;
+const int WIDTH = 40;
 
 // initial Screen, defined in "screen.h"
 Screen scr(HEIGHT, WIDTH);
@@ -16,22 +16,22 @@ int main() {
     scr.buffer.at(scr.HEIGHT - 1).at(scr.WIDTH - 1) = Pixel('@', 'w');
 
     // create a Shape, defined in "geometry.h"
-    Shape quad(scr, {
+    Shape quad(&scr, {
+        {20.2,  19},
+        {24,  12},
+        {38,  12},
+        {26,  9},
+        {30,  0},
+        {20,  6},
+        {8,   0},
+        {14,  9},
         {0,   12},
-        {7,   12},
-        {11,  19},
-        {12,  12},
-        {19,  12},
-        {13,  9},
-        {15,  0},
-        {10,  6},
-        {4,   0},
-        {7,   9},
+        {15,  12},
     });
 
     // rasterize
     quad.draw_fill('.');
-    quad.draw_outline('#');
+    quad.draw_outline('$');
 
     // render the shape
     scr.render();
