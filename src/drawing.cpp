@@ -15,7 +15,7 @@ void draw(Screen& scr, const int x, const int y, const char character, const cha
 }
 // draw horizontal line
 void draw_h(Screen& scr, const int y, const int x1, const int x2, const char character, const char color = 'w') {
-    for(size_t x = x1; x < x2; x++) {
+    for(int x = x1; x < x2; x++) {
         scr.buffer[y][x] = Pixel(character, color);
     }
 }
@@ -77,7 +77,7 @@ Edge vertices_to_edge(const Vertex& v_y_min, const Vertex& v_y_max) {
     const int y_max = std::lround(v_y_max.y);
     const float x_at_y_min = std::lround(v_y_min.x);
 
-    const float dx = std::abs(std::round(v_y_min.x) - std::round(v_y_max.x));
+    const float dx = std::round(v_y_max.x) - std::round(v_y_min.x);
     const int dy = y_max - y_min;
 
     return Edge{y_min, y_max, x_at_y_min, dx/dy};

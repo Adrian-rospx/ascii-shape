@@ -19,20 +19,21 @@ int main() {
 
     // create a Shape, defined in "geometry.h"
     Shape quad({
-        {5,    11.8},
-        {14.4, 15.6},
-        {18,   2.6},
-        {2.3,  5}
+        {5,    12},
+        {14,   16},
+        {18,   3},
+        {2,    5}
     });
-    quad.draw_outline(scr, '#');
+    quad.draw_outline(scr, '-');
 
-    // render the shape
-    scr.render();
 
     // edge table creation
     EdgeTable edgeTable(scr, quad.Vertices);
 
-    edgeTable.draw_shape(scr);
+    edgeTable.draw_shape(scr, '$');
 
+    // render the shape
+    scr.render();
+    
     return 0;
 }
