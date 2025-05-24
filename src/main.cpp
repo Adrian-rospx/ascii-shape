@@ -30,10 +30,13 @@ int main() {
     scr.render();
 
     // edge table creation
-    EdgeTable edgt(quad.Vertices);
+    EdgeTable edgeTable(scr, quad.Vertices);
     // print to check
-    for(const Edge& edge : edgt.Edges) {
-        std::cout << edge.y_min << ' ' << edge.x_at_y_min << '\n';
+    for(const std::vector<Edge>& h_vec : edgeTable.edge_buckets) {
+        if(!h_vec.empty()) {
+            std::cout << "y_min: " << h_vec[0].y_min 
+                      << " size: " << h_vec.size() << '\n';
+        }
     }
 
     return 0;

@@ -1,14 +1,17 @@
 // line drawing module
 #pragma once
 
-#include <algorithm>
+#include <iostream>
 #include <vector>
 
 #include "geometry.h"
 #include "screen.h"
 
 // line drawing utility
-void draw_line(Screen& scr, int x1, int y1, int x2, int y2, const char character);
+void draw_line(Screen& scr, 
+    int x1, int y1, int x2, int y2, 
+    const char character
+);
 
 // edge structure for polygon drawing
 struct Edge {
@@ -20,29 +23,22 @@ struct Edge {
 
 // edge table (polygon drawing)
 class EdgeTable {
-    Edge vertices_to_edge(const Vertex& v1_y_min, const Vertex& v2);
+    std::vector<Edge> make_edge_vector(const std::vector<Vertex>& Vertices);
 public:
-    std::vector<Edge> Edges;
+    std::vector<std::vector<Edge>> edge_buckets;
 
-    EdgeTable(const std::vector<Vertex>& Vertices) {
+    EdgeTable(const Screen& scr,
+        const std::vector<Vertex>& Vertices
+    ) {
+        edge_buckets.resize(scr.HEIGHT);
 
-        for(int i=0; i < Vertices.size(); i++) {
-            // select neighboring vertices to create edges
-            const Vertex v1 = Vertices[i];
-            const Vertex v2 = Vertices[(i+1 != Vertices.size()) ? i+1 : 0];
-
-            if(v1.y < v2.y) {
-                Edges.push_back(vertices_to_edge(v1, v2));
-            }
-            else {
-                Edges.push_back(vertices_to_edge(v2, v1));
-            }
+        // array of all edges:
+        const std::vector<Edge> edges = make_edge_vector(Vertices);
+        
+        // add to egde buckets by y_min value
+        for(const Edge& e : edges) {
+            edge_buckets[e.y_min].push_back(e);
         }
-        // sort edges by y_min
-        std::sort(Edges.begin(), Edges.end(), 
-            [](const Edge& A, const Edge& B) {
-                return A.y_min < B.y_min;
-        });
 
     }
 };

@@ -1,6 +1,7 @@
 // line drawing algorithm implementation
 #include "drawing.h"
 
+#include <algorithm>
 #include <cmath>
 #include <vector>
 
@@ -12,7 +13,9 @@ void draw(Screen& scr, const int x, const int y, const char character, const cha
     scr.buffer.at(y).at(x) = Pixel(character, color);
 }
 
-// line algorithm functions
+/*
+    Line drawing algorithm functions
+*/
 void draw_line_alg_low(Screen& scr, 
     const int x1, const int y1, const int x2, const int y2, 
     const char character
@@ -59,8 +62,10 @@ void draw_line(Screen& scr, int x1, int y1, int x2, int y2, const char character
     }
 }
 
-// edge table functions
-Edge EdgeTable::vertices_to_edge(const Vertex& v_y_min, const Vertex& v_y_max) {
+/*
+    Edge table functions
+*/
+Edge vertices_to_edge(const Vertex& v_y_min, const Vertex& v_y_max) {
     const int y_min = std::lround(v_y_min.y);
     const int y_max = std::lround(v_y_max.y);
     const int x_at_y_min = std::lround(v_y_min.x);
@@ -70,6 +75,26 @@ Edge EdgeTable::vertices_to_edge(const Vertex& v_y_min, const Vertex& v_y_max) {
 
     return Edge{y_min, y_max, x_at_y_min, dx/dy};
 }
+std::vector<Edge> EdgeTable::make_edge_vector(const std::vector<Vertex>& Vertices) {
+    // create an array with all edges
+    std::vector<Edge> Edges;
+
+    for(int i=0; i < Vertices.size(); i++) {
+        // select neighboring vertices to create edges
+        const Vertex v1 = Vertices[i];
+        const Vertex v2 = Vertices[(i+1 != Vertices.size()) ? i+1 : 0];
+
+        if(v1.y < v2.y) {
+            Edges.push_back(vertices_to_edge(v1, v2));
+        }
+        else {
+            Edges.push_back(vertices_to_edge(v2, v1));
+        }
+    }
+    
+    return Edges;
+}
+
 
 void scanline_fill(Screen& scr,
     std::vector<Vertex> Vertices
