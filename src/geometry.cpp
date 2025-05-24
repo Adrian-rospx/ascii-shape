@@ -6,7 +6,7 @@
 
 #include "drawing.h"
 
-void Shape::draw_outline(Screen& scr) {
+void Shape::draw_outline(Screen& scr, const char character) {
     size_t size = Vertices.size();
     for(size_t i = 0; i < size; i++) {
         // use each vertex and the next one to create an edge
@@ -18,7 +18,8 @@ void Shape::draw_outline(Screen& scr) {
             static_cast<int>(lround(v1.x)), 
             static_cast<int>(lround(v1.y)), 
             static_cast<int>(lround(v2.x)), 
-            static_cast<int>(lround(v2.y))
+            static_cast<int>(lround(v2.y)), 
+            character
         );
     }
 }

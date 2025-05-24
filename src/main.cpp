@@ -18,12 +18,12 @@ int main() {
 
     // create a Shape, defined in "geometry.h"
     Shape quad({
-        {5, 12},
+        {5,  12},
         {15, 15},
         {18, 2},
-        {2, 5}
+        {2,  5}
     });
-    quad.draw_outline(scr);
+    quad.draw_outline(scr, ';');
 
     // render the shape
     scr.render();
