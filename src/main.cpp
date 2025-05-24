@@ -31,15 +31,8 @@ int main() {
 
     // edge table creation
     EdgeTable edgeTable(scr, quad.Vertices);
-    // print to check
-    for(const std::vector<Edge>& h_vec : edgeTable.edge_buckets) {
-        if(!h_vec.empty()) {
-            std::cout << "y_min: " << h_vec[0].y_min 
-                      << " size: " << h_vec.size() << '\n';
-        }
-    }
 
-    std::cout << edgeTable.y_min << ' ' << edgeTable.y_max;
+    edgeTable.draw(scr);
 
     return 0;
 }

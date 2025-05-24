@@ -37,12 +37,12 @@ public:
         const std::vector<Edge> edges = make_edge_vector(Vertices);
 
         // min and max elements
-        y_min = std::min_element(edges.begin(), edges.end(), 
+        y_min = std::min_element(edges.cbegin(), edges.cend(), 
             [](const Edge& a, const Edge& b) { 
                 return a.y_min < b.y_min;
             }
         )->y_min;
-        y_max = std::max_element(edges.begin(), edges.end(), 
+        y_max = std::max_element(edges.cbegin(), edges.cend(), 
             [](const Edge& a, const Edge& b) { 
                 return a.y_max < b.y_max;
             }
@@ -56,7 +56,24 @@ public:
 
     void draw(Screen& scr) {
         for(int y = y_min; y < y_max; y++) {
-
+            // add edges from current edge bucket
+            if(!edge_buckets[y].empty()) {
+                for(const Edge& edge : edge_buckets[y])
+                    AET.push_back(edge);
+            }
+            // remove y = y_max
+            AET.erase(std::remove_if(AET.begin(), AET.end(),
+                [y](const Edge& A) {
+                    return y == A.y_max;
+                }
+                ), AET.end()
+            );
+            // sort by current x value
+            std::sort(AET.begin(), AET.end(), 
+                [](const Edge& A, const Edge& B) {
+                    return A.x < B.x;
+                }
+            );
         }
     }
 };
