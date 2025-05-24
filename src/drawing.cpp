@@ -59,12 +59,17 @@ void draw_line(Screen& scr, int x1, int y1, int x2, int y2, const char character
     }
 }
 
-struct Edge {
-    int y_min;
-    int y_max;
-    int x_at_y_min;
-    float dx_dy;    // inverse slope
-};
+// edge table functions
+Edge EdgeTable::vertices_to_edge(const Vertex& v_y_min, const Vertex& v_y_max) {
+    const int y_min = std::lround(v_y_min.y);
+    const int y_max = std::lround(v_y_max.y);
+    const int x_at_y_min = std::lround(v_y_min.x);
+
+    const float dx = std::abs(v_y_min.x - v_y_max.x);
+    const int dy = y_max - y_min;
+
+    return Edge{y_min, y_max, x_at_y_min, dx/dy};
+}
 
 void scanline_fill(Screen& scr,
     std::vector<Vertex> Vertices

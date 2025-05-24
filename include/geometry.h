@@ -11,8 +11,9 @@ struct Vertex {
 };
 
 class Shape {
-    std::vector<Vertex> Vertices;
 public:
+    std::vector<Vertex> Vertices;
+    
     Shape(const std::vector<Vertex>& Vertices) : Vertices(Vertices) {}
 
     void draw_outline(Screen& scr, const char character = '#');

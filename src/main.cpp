@@ -1,6 +1,7 @@
-#include <conio.h>
+#include <iostream>
 #include <vector>
 
+#include "drawing.h"
 #include "geometry.h"
 #include "screen.h"
 
@@ -18,15 +19,22 @@ int main() {
 
     // create a Shape, defined in "geometry.h"
     Shape quad({
-        {5,  12},
-        {15, 15},
-        {18, 2},
-        {2,  5}
+        {5,    11.8},
+        {14.4, 15.6},
+        {18,   2.6},
+        {2.3,  5}
     });
-    quad.draw_outline(scr, ';');
+    quad.draw_outline(scr, '#');
 
     // render the shape
     scr.render();
+
+    // check edge table creation
+    EdgeTable edgt(quad.Vertices);
+    // print to check
+    for(const Edge& edge : edgt.Edges) {
+        std::cout << edge.y_min << ' ' << edge.x_at_y_min << '\n';
+    }
 
     return 0;
 }
