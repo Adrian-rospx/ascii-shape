@@ -6,7 +6,7 @@
 
 #include "rasterize.h"
 
-void Shape::draw_outline(const char character) {
+void Shape::draw_outline(const char character, const char color) {
     size_t size = Vertices.size();
     for(size_t i = 0; i < size; i++) {
         // use each vertex and the next one to create an edge
@@ -19,12 +19,13 @@ void Shape::draw_outline(const char character) {
             lround(v1.y), 
             lround(v2.x), 
             lround(v2.y), 
-            character
+            character,
+            color
         );
     }
 }
 
-void Shape::draw_fill(const char character) {
+void Shape::draw_fill(const char character, const char color) {
     EdgeTable edge_table(scr, Vertices);
-    edge_table.fill_shape(scr, character);
+    edge_table.fill_shape(scr, character, color);
 }

@@ -10,7 +10,8 @@
 // line drawing utility
 void draw_line(Screen& scr, 
     int x1, int y1, int x2, int y2, 
-    const char character
+    const char character,
+    const char color
 );
 
 // edge structure for polygon drawing
@@ -54,5 +55,5 @@ public:
         }
     }
 
-    void fill_shape(Screen& scr, const char character='@', const char color = 'w');
+    void fill_shape(Screen& scr, const char character, const char color);
 };

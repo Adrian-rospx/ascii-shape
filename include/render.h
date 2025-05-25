@@ -7,7 +7,7 @@
 // each pixel carries rgb values between 0-255
 struct Pixel {
     char character = ' ';
-    char color = 'w';
+    char color = ' ';
 
     Pixel(const char character, const char color) : character(character), color(color) {}
     Pixel() {}

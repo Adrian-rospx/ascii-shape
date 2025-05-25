@@ -17,6 +17,6 @@ public:
     
     Shape(Screen* scr, const std::vector<Vertex>& Vertices) : scr(*scr), Vertices(Vertices) {}
 
-    void draw_fill(const char character = '#');
-    void draw_outline(const char character = '#');
+    void draw_fill(const char character, const char color);
+    void draw_outline(const char character, const char color);
 };

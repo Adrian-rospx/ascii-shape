@@ -30,8 +30,8 @@ int main() {
     });
 
     // rasterize
-    quad.draw_fill('.');
-    quad.draw_outline('$');
+    quad.draw_fill('.', 'b');
+    quad.draw_outline('$', 'b');
 
     // render the shape
     scr.render();

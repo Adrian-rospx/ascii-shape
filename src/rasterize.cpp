@@ -10,11 +10,11 @@
 #include "shape.h"
 
 // general drawing function
-void draw(Screen& scr, const int x, const int y, const char character, const char color = 'w') {
+void draw(Screen& scr, const int x, const int y, const char character, const char color) {
     scr.buffer[y][x] = Pixel(character, color);
 }
 // draw horizontal line
-void draw_h(Screen& scr, const int y, const int x1, const int x2, const char character, const char color = 'w') {
+void draw_h(Screen& scr, const int y, const int x1, const int x2, const char character, const char color) {
     for(int x = x1; x <= x2; x++) {
         scr.buffer[y][x] = Pixel(character, color);
     }
@@ -25,7 +25,7 @@ void draw_h(Screen& scr, const int y, const int x1, const int x2, const char cha
 */
 void draw_line_alg_low(Screen& scr, 
     const int x1, const int y1, const int x2, const int y2, 
-    const char character
+    const char character, const char color
 ) {
     const int dx = x2 - x1;
     const int dy = y2 - y1;
@@ -34,12 +34,12 @@ void draw_line_alg_low(Screen& scr,
     // drawing:
     for(int x = x1; x <= x2; x++) {
         const int y = static_cast<int>(std::lround(static_cast<float>(x-x1) * m + y1));
-        draw(scr, x, y, character);
+        draw(scr, x, y, character, color);
     }
 }
 void draw_line_alg_steep(Screen& scr, 
     const int x1, const int y1, const int x2, const int y2,
-    const char character
+    const char character, const char color
 ) {
     const int dx = x2 - x1;
     const int dy = y2 - y1;
@@ -47,11 +47,12 @@ void draw_line_alg_steep(Screen& scr,
 
     for(int y = y1; y <= y2; y++) {
         const int x = static_cast<int>(std::lround(static_cast<float>(y-y1) * inv_m + x1));
-        draw(scr, x, y, character);
+        draw(scr, x, y, character, color);
     }
 }
 
-void draw_line(Screen& scr, int x1, int y1, int x2, int y2, const char character) {
+void draw_line(Screen& scr, int x1, int y1, int x2, int y2, 
+    const char character, const char color = ' ') {
 
     if(std::abs(x2-x1) > std::abs(y2-y1)) {
         // switch points if the x values aren't in order
@@ -59,13 +60,13 @@ void draw_line(Screen& scr, int x1, int y1, int x2, int y2, const char character
             std::swap(x1, x2);
             std::swap(y1, y2);
         }
-        draw_line_alg_low(scr, x1, y1, x2, y2, character);
+        draw_line_alg_low(scr, x1, y1, x2, y2, character, color);
     } else {
         if(y1 > y2) {
             std::swap(x1, x2);
             std::swap(y1, y2);
         }
-        draw_line_alg_steep(scr, x1, y1, x2, y2, character);
+        draw_line_alg_steep(scr, x1, y1, x2, y2, character, color);
     }
 }
 
