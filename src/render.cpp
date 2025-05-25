@@ -1,5 +1,5 @@
 // screen rendering functions
-#include "screen.h"
+#include "render.h"
 
 #include <iostream>
 #include <string>

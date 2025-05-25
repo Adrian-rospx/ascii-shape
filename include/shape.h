@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "screen.h"
+#include "render.h"
 
 struct Vertex {
     float x;

@@ -6,8 +6,8 @@
 #include <cstddef>
 #include <vector>
 
-#include "screen.h"
-#include "geometry.h"
+#include "render.h"
+#include "shape.h"
 
 // general drawing function
 void draw(Screen& scr, const int x, const int y, const char character, const char color = 'w') {

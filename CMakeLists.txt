@@ -7,9 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(ascii_shape 
     "src/main.cpp"
-    "src/screen.cpp"
+    "src/render.cpp"
+    "src/shape.cpp"
     "src/rasterize.cpp"
-    "src/geometry.cpp"
 )
 
 target_include_directories(ascii_shape PUBLIC 

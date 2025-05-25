@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <vector>
 
-#include "geometry.h"
-#include "screen.h"
+#include "shape.h"
+#include "render.h"
 
 // line drawing utility
 void draw_line(Screen& scr, 

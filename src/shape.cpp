@@ -1,5 +1,5 @@
 // geometry classes implementations
-#include "geometry.h"
+#include "shape.h"
 
 #include <cmath>
 #include <cstddef>
