@@ -12,20 +12,28 @@ Screen scr(HEIGHT, WIDTH);
 
 int main() {
     // draw two points in corners
-    scr.buffer.at(0).at(0) = Pixel('@', 'w');
-    scr.buffer.at(scr.HEIGHT - 1).at(scr.WIDTH - 1) = Pixel('@', 'w');
+    scr.buffer.at(0).at(0) = Pixel('-', 'w');
+    scr.buffer.at(scr.HEIGHT - 1).at(scr.WIDTH - 1) = Pixel('-', 'w');
 
     // create a Shape, defined in "shape.h"
-    Shape square(&scr, {
-        {16, 8},
+    Shape myLetter(&scr, {
+        {5, 8},     // right side
         {16, -8},
-        {-16, -8},
-        {-16,  8},
+        {10, -8},   // middle gap right
+        {4, -1},
+        {-6, -1},
+        {-6, 2},
+        {3, 2},     // inside loop
+        {1, 5},
+        {-8, 5},    // loop end
+        {-9, -8},
+        {-15, -8}, // left side
+        {-13,  8},
     });
 
     // rasterize, colors defined in "render.h"
-    square.draw_fill('.', 'g');
-    square.draw_outline('$', 'g');
+    myLetter.draw_fill('.', 'r');
+    myLetter.draw_outline('$', 'r');
 
     // render the shape
     scr.render();
