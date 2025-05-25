@@ -4,7 +4,14 @@
 #include <iostream>
 #include <string>
 
-std::string get_color(const char color) {
+/*
+    colors handled:
+    'w' - white;  
+    'r' - red;   'g' - green;    'y' - yellow;
+    'b' - blue;  'm' - magenta;  'c' - cyan;
+    'k' - black;
+*/
+const std::string get_color_code(const char color) {
     switch (color) {
         case 'w':
             return "\033[0m";
@@ -12,8 +19,16 @@ std::string get_color(const char color) {
             return "\033[31m";
         case 'g':
             return "\033[32m";
+        case 'y':
+            return "\033[33m";
         case 'b':
             return "\033[34m";
+        case 'm':
+            return "\033[35m";
+        case 'c':
+            return "\033[36m";
+        case 'k':
+            return "\033[37m";
         default:
             return "\033[0m";
     }
@@ -24,9 +39,9 @@ void Screen::render() {
         // create a string, add to it and flush it all at once
         std::string line(this->WIDTH, char());
 
-        for(auto pixel : *row_iter) {
+        for(const Pixel& pixel : *row_iter) {
             // draws uncolored character
-            line += (get_color(pixel.color) + pixel.character);
+            line += (get_color_code(pixel.color) + pixel.character);
         }
         std::cout << line << "\033[0m\n";
     }

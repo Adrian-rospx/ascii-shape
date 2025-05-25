@@ -16,7 +16,7 @@ int main() {
     scr.buffer.at(scr.HEIGHT - 1).at(scr.WIDTH - 1) = Pixel('@', 'w');
 
     // create a Shape, defined in "shape.h"
-    Shape quad(&scr, {
+    Shape star(&scr, {
         {20.2,  19},
         {24,  12},
         {38,  12},
@@ -29,9 +29,9 @@ int main() {
         {15,  12},
     });
 
-    // rasterize
-    quad.draw_fill('.', 'b');
-    quad.draw_outline('$', 'b');
+    // rasterize, colors defined in "render.h"
+    star.draw_fill('.', 'y');
+    star.draw_outline('$', 'y');
 
     // render the shape
     scr.render();
