@@ -15,8 +15,8 @@ struct Pixel {
 
 // screen buffer with height and width container
 struct Screen {
-    const uint32_t HEIGHT;
-    const uint32_t WIDTH;
+    const uint16_t HEIGHT;
+    const uint16_t WIDTH;
 
     std::vector<std::vector<Pixel>> buffer;
 

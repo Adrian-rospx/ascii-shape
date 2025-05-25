@@ -16,22 +16,16 @@ int main() {
     scr.buffer.at(scr.HEIGHT - 1).at(scr.WIDTH - 1) = Pixel('@', 'w');
 
     // create a Shape, defined in "shape.h"
-    Shape star(&scr, {
-        {20.2,  19},
-        {24,  12},
-        {38,  12},
-        {26,  9},
-        {30,  0},
-        {20,  6},
-        {8,   0},
-        {14,  9},
-        {0,   12},
-        {15,  12},
+    Shape square(&scr, {
+        {16, 8},
+        {16, -8},
+        {-16, -8},
+        {-16,  8},
     });
 
     // rasterize, colors defined in "render.h"
-    star.draw_fill('.', 'y');
-    star.draw_outline('$', 'y');
+    square.draw_fill('.', 'g');
+    square.draw_outline('$', 'g');
 
     // render the shape
     scr.render();

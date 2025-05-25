@@ -3,15 +3,24 @@
 
 #include <cmath>
 #include <cstddef>
+#include <vector>
 
 #include "rasterize.h"
 
+// calculate screen vertices (local vertices + center vertex location)
+void Shape::update_screen_vertices() {
+    Vertices_screen = Vertices_local;
+    for(Vertex& v : Vertices_screen) {
+        v.add(Center);
+    }
+}
+
 void Shape::draw_outline(const char character, const char color) {
-    size_t size = Vertices.size();
+    size_t size = Vertices_screen.size();
     for(size_t i = 0; i < size; i++) {
         // use each vertex and the next one to create an edge
-        const Vertex v1 = Vertices[i];
-        const Vertex v2 = Vertices[(i+1 != size) ? i+1 : 0];
+        const Vertex v1 = Vertices_screen[i];
+        const Vertex v2 = Vertices_screen[(i+1 != size) ? i+1 : 0];
 
         using std::lround;
         draw_line(scr, 
@@ -26,6 +35,6 @@ void Shape::draw_outline(const char character, const char color) {
 }
 
 void Shape::draw_fill(const char character, const char color) {
-    EdgeTable edge_table(scr, Vertices);
+    EdgeTable edge_table(scr, Vertices_screen);
     edge_table.fill_shape(scr, character, color);
 }
