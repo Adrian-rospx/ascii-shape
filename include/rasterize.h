@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <vector>
 
-#include "shape.h"
+#include "polygon.h"
 #include "render.h"
 
 // line drawing utility

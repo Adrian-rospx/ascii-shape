@@ -13,7 +13,7 @@ struct Vertex {
     }
 };
 
-class Shape {
+class Polygon {
     Screen& scr;
     const Vertex Center;
 
@@ -21,7 +21,7 @@ class Shape {
     std::vector<Vertex> Vertices_screen;
 public:
 
-    Shape(Screen* scr, const std::vector<Vertex>& Vertices) : 
+    Polygon(Screen* scr, const std::vector<Vertex>& Vertices) : 
         scr(*scr), 
         Vertices_local(Vertices),
         Center{static_cast<float>(scr->WIDTH)/2, static_cast<float>(scr->HEIGHT)/2} {

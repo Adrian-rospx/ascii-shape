@@ -8,7 +8,7 @@ any polygon, both convex and concave with quite a nice accuracy.
 
 I've added all 8 basic terminal colors.
 
-Shapes can be defined by modifying the x and y values of each vertex.
+Polygons can be defined with the x and y values of each vertex.
 
 Current example:
 ```

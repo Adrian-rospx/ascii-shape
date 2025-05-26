@@ -1,6 +1,6 @@
 #include <vector>
 
-#include "shape.h"
+#include "polygon.h"
 #include "render.h"
 
 // constants:
@@ -16,7 +16,7 @@ int main() {
     scr.buffer.at(scr.HEIGHT - 1).at(scr.WIDTH - 1) = Pixel('-', 'w');
 
     // create a Shape, defined in "shape.h"
-    Shape myLetter(&scr, {
+    Polygon myLetter(&scr, {
         {5, 8},     // right side
         {16, -8},
         {10, -8},   // middle gap right
@@ -32,8 +32,8 @@ int main() {
     });
 
     // rasterize, colors defined in "render.h"
-    myLetter.draw_fill('.', 'r');
-    myLetter.draw_outline('$', 'r');
+    myLetter.draw_fill('-', 'r');
+    myLetter.draw_outline('#', 'r');
 
     // render the shape
     scr.render();

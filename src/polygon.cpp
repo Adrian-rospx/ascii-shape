@@ -1,5 +1,5 @@
 // geometry classes implementations
-#include "shape.h"
+#include "polygon.h"
 
 #include <cmath>
 #include <cstddef>
@@ -8,14 +8,14 @@
 #include "rasterize.h"
 
 // calculate screen vertices (local vertices + center vertex location)
-void Shape::update_screen_vertices() {
+void Polygon::update_screen_vertices() {
     Vertices_screen = Vertices_local;
     for(Vertex& v : Vertices_screen) {
         v.add(Center);
     }
 }
 
-void Shape::draw_outline(const char character, const char color) {
+void Polygon::draw_outline(const char character, const char color) {
     size_t size = Vertices_screen.size();
     for(size_t i = 0; i < size; i++) {
         // use each vertex and the next one to create an edge
@@ -34,7 +34,7 @@ void Shape::draw_outline(const char character, const char color) {
     }
 }
 
-void Shape::draw_fill(const char character, const char color) {
+void Polygon::draw_fill(const char character, const char color) {
     EdgeTable edge_table(scr, Vertices_screen);
     edge_table.fill_shape(scr, character, color);
 }

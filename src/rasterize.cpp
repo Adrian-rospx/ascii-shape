@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "render.h"
-#include "shape.h"
+#include "polygon.h"
 
 // general drawing function
 void draw(Screen& scr, const int x, const int y, const char character, const char color) {
